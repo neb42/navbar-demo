@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { PALETTE, TYPOGRAPHY } from '@asidatascience/adler-ui';
 
 const collapsedWidth = '70px';
 const expandedWidth = '200px';
@@ -26,13 +27,13 @@ export const Navbar = styled.div`
   left: 0;
   height: ${height};
   width: ${({ expanded }) => width(expanded)};
-  background-color: red;
+  background-color: ${PALETTE.black2};
   padding-top: 250px;
   ${widthAnimation}
 `;
 
 export const NavbarItemList = styled.div`
-  background-color: green;
+  background-color: ${PALETTE.black};
   padding: 5px 0;
   ${widthAnimation}
 `;
@@ -41,11 +42,11 @@ export const NavbarItemGroup = styled.div`
   margin: 0 5px 5px 5px;
 
   ${({ pathname, basePath }) => pathname.startsWith(basePath) ? `
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.03);
   ` : ''}
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.03);
   }
 
   &:last-child {
@@ -57,6 +58,8 @@ export const NavbarItem = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  text-decoration: none;
+  cursor: pointer;
   ${widthAnimation}
 
   ${({ nested, activeClassName }) => nested ? `
@@ -69,10 +72,8 @@ export const NavbarItem = styled(NavLink)`
 export const NavbarItemCollapsed = styled.div`
   ${({ nested }) => nested ? `
     margin-left: 20px;
-    font-size: 20px;
   ` : `
     margin-left: 15px;
-    font-size: 30px;
   `}
 `;
 
@@ -80,6 +81,7 @@ export const NavbarItemExpanded = styled.div`
   overflow: hidden;
   white-space: nowrap;
   margin-left: 5px;
+  color: ${PALETTE.white};
   width: ${({ expanded }) => expanded ? 'auto' : '0%'};
   ${({ nested }) => nested ? `
     font-size: 14px;

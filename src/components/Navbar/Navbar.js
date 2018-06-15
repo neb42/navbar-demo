@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Icon, ICONS, PALETTE } from '@asidatascience/adler-ui';
 
 import * as Styles from './Navbar.styles';
 
@@ -18,7 +19,7 @@ type State = {
 class Navbar extends React.Component<Props, State> {
   props: Props;
   state: State = {
-    expanded: false,
+    expanded: true,
   };
 
   handleMouseEnter = () => {
@@ -26,7 +27,7 @@ class Navbar extends React.Component<Props, State> {
   }
 
   handleMouseLeave = () => {
-    this.setState({ expanded: false });
+    this.setState({ expanded: true });
   }
 
   render() {
@@ -44,7 +45,7 @@ class Navbar extends React.Component<Props, State> {
           <Styles.NavbarItemGroup pathname={pathname} basePath="/page-1" >
             <Styles.NavbarItem to="/page-1" >
               <Styles.NavbarItemCollapsed>
-                😀
+                <Icon icon={ICONS.workspace} size={20} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} >
                 Page 1
@@ -53,7 +54,7 @@ class Navbar extends React.Component<Props, State> {
 
             <Styles.NavbarItem to="/page-1" nested={true} >
               <Styles.NavbarItemCollapsed nested={true} >
-                💩
+                <Icon icon={ICONS.api} size={15} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} nested={true} >
                 Page 1 A
@@ -62,7 +63,7 @@ class Navbar extends React.Component<Props, State> {
 
             <Styles.NavbarItem to="/page-1" nested={true} >
               <Styles.NavbarItemCollapsed nested={true} >
-                🤖
+                <Icon icon={ICONS.apps} size={15} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} nested={true} >
                 Page 1 B
@@ -71,7 +72,7 @@ class Navbar extends React.Component<Props, State> {
 
             <Styles.NavbarItem to="/page-1" nested={true} >
               <Styles.NavbarItemCollapsed nested={true} >
-                👽
+                <Icon icon={ICONS.team} size={15} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} nested={true} >
                 Page 1 C
@@ -82,7 +83,7 @@ class Navbar extends React.Component<Props, State> {
           <Styles.NavbarItemGroup pathname={pathname} basePath="/page-2" >
             <Styles.NavbarItem to="/page-2" >
               <Styles.NavbarItemCollapsed>
-                😉
+                <Icon icon={ICONS.environment} size={20} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} >
                 Page 2
@@ -93,7 +94,7 @@ class Navbar extends React.Component<Props, State> {
           <Styles.NavbarItemGroup pathname={pathname} basePath="/page-3" >
             <Styles.NavbarItem to="/page-3" >
               <Styles.NavbarItemCollapsed>
-                ☹️
+                <Icon icon={ICONS.deployment} size={20} color={PALETTE.white} />
               </Styles.NavbarItemCollapsed>
               <Styles.NavbarItemExpanded expanded={expanded} >
                 Page 3
