@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const collapsedWidth = '70px';
 const expandedWidth = '200px';
@@ -27,7 +27,6 @@ export const Navbar = styled.div`
   height: ${height};
   width: ${({ expanded }) => width(expanded)};
   background-color: red;
-
   padding-top: 250px;
   ${widthAnimation}
 `;
@@ -38,30 +37,54 @@ export const NavbarItemList = styled.div`
   ${widthAnimation}
 `;
 
-export const NavbarItem = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 60px;
+export const NavbarItemGroup = styled.div`
   margin: 0 5px 5px 5px;
-  font-size: 30px;
-  background-color: rgba(0, 0, 0, 0.2);
-  ${widthAnimation}
+
+  ${({ pathname, basePath }) => pathname.startsWith(basePath) ? `
+    background-color: rgba(0, 0, 0, 0.2);
+  ` : ''}
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 
   &:last-child {
     margin-bottom: 0;
   }
 `;
 
+export const NavbarItem = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  ${widthAnimation}
+
+  ${({ nested, activeClassName }) => nested ? `
+    height: 30px;
+  ` : `
+    height: 60px;
+  `}
+`;
+
 export const NavbarItemCollapsed = styled.div`
-  margin-left: 15px;
+  ${({ nested }) => nested ? `
+    margin-left: 20px;
+    font-size: 20px;
+  ` : `
+    margin-left: 15px;
+    font-size: 30px;
+  `}
 `;
 
 export const NavbarItemExpanded = styled.div`
   overflow: hidden;
   white-space: nowrap;
-  font-size: 20px;
   margin-left: 5px;
   width: ${({ expanded }) => expanded ? 'auto' : '0%'};
+  ${({ nested }) => nested ? `
+    font-size: 14px;
+  ` : `
+    font-size: 20px;
+  `}
   ${widthAnimation}
 `;
