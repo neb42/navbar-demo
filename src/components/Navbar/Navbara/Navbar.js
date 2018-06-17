@@ -40,9 +40,6 @@ class Navbar extends React.Component<Props, State> {
         onMouseLeave={this.handleMouseLeave}
       >
         {React.Children.map(children, child => {
-          if (child.type.displayName !== 'withRouter(NavbarItem)') {
-            throw Error('Only NavbarItem components are allowed as children');
-          }
           return React.cloneElement(
             child,
             { expanded },

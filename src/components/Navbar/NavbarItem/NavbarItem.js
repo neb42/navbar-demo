@@ -28,19 +28,16 @@ const NavbarItem = ({
     pathname,
   },
 }: Props) => (
-  <Styles.NavbarItemGroup pathname={pathname} path={path} nested={nested} >
-    <Styles.NavbarItem to={path} >
-      <Styles.Collapsed>
-        <Icon icon={icon} size={14} color={pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
+  <Styles.Container pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
+    <Styles.NavbarItem to={path} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
+      <Styles.Collapsed nested={nested} >
+        <Icon icon={icon} size={Styles.iconSize(nested)} color={pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
       </Styles.Collapsed>
-      <Styles.Expanded expanded={expanded} >
+      <Styles.Expanded expanded={expanded} nested={nested} >
         <span>{label}</span>
       </Styles.Expanded>
     </Styles.NavbarItem>
-    {!nested && React.Children.map(children, child => {
-      if (child.type.displayName !== 'withRouter(NavbarItem)') {
-        throw Error('Only NavbarItem components are allow as children');
-      }
+    {!nested && pathname.startsWith(path) && React.Children.map(children, child => {
       return React.cloneElement(
         child,
         {
@@ -49,7 +46,7 @@ const NavbarItem = ({
         },
       );
     })}
-  </Styles.NavbarItemGroup>
+  </Styles.Container>
 );
 NavbarItem.displayName = 'NavbarItem';
 export default withRouter(NavbarItem);

@@ -1,9 +1,9 @@
 import { css } from 'styled-components';
 
-export const collapsedWidth = '70px';
-export const expandedWidth = '200px';
+export const collapsedWidth = 70;
+export const expandedWidth = 200;
 export const width = expanded => expanded ? expandedWidth : collapsedWidth;
-export const height = '100vh';
+export const height = 100;
 
 const animationSpeed = '0.3s';
 export const widthAnimation = css`
