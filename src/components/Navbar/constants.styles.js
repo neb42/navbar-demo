@@ -12,3 +12,9 @@ export const widthAnimation = css`
   -o-transition: width ${animationSpeed} ease-in-out;
   transition: width ${animationSpeed} ease-in-out;
 `;
+export const marginAnimation = css`
+  -webkit-transition: margin ${animationSpeed};
+  -moz-transition: margin ${animationSpeed};
+  -o-transition: margin ${animationSpeed};
+  transition: margin ${animationSpeed};
+`;

@@ -4,11 +4,12 @@ import { PALETTE, TYPOGRAPHY } from '@asidatascience/adler-ui';
 import {
   collapsedWidth,
   widthAnimation,
+  marginAnimation,
 } from '../constants.styles';
 
 export const iconSize = nested => nested ? 14 : 16;
 const navbarItemMargin = 10;
-const navbarItemRadius = nested => ((collapsedWidth - (navbarItemMargin * 2) - iconSize(nested)) /   2) + (nested ? 5 : 0);
+const navbarItemRadius = (nested, expanded) => ((collapsedWidth - (navbarItemMargin * 2) - iconSize(nested)) /   2) + ((nested && expanded) ? 20 : 0);
 
 export const Container = styled.div`
   margin: ${({ nested }) => nested ? 0 : `${navbarItemMargin}px`};
@@ -34,7 +35,8 @@ export const NavbarItem = styled(NavLink)`
 `;
 
 export const Collapsed = styled.div`
-  margin-left: ${({ nested }) => navbarItemRadius(nested)}px;
+  margin-left: ${({ nested, expanded }) => navbarItemRadius(nested, expanded)}px;
+  ${marginAnimation}
 `;
 
 export const Expanded = styled.div`

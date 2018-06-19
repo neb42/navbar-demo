@@ -30,7 +30,7 @@ const NavbarItem = ({
 }: Props) => (
   <Styles.Container pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
     <Styles.NavbarItem to={path} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
-      <Styles.Collapsed nested={nested} >
+      <Styles.Collapsed nested={nested} expanded={expanded} >
         <Icon icon={icon} size={Styles.iconSize(nested)} color={pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
       </Styles.Collapsed>
       <Styles.Expanded expanded={expanded} nested={nested} >
