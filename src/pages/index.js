@@ -1,3 +1,4 @@
-export { default as Page1 } from './Page1';
-export { default as Page2 } from './Page2';
-export { default as Page3 } from './Page3';
+export { default as Workspace } from './Workspace';
+export { default as Environments } from './Environments';
+export { default as Apps } from './Apps';
+export { default as Apis } from './Apis';

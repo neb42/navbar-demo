@@ -1,18 +1,21 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import {
-  Page1,
-  Page2,
-  Page3,
+  Workspace,
+  Environments,
+  Apps,
+  Apis,
 } from './pages';
 
 const Routes = () => (
   <Switch>
-    <Redirect path="/" exact to="/page-1" />
-    <Route path="/page-1" component={Page1} />
-    <Route path="/page-2" component={Page2} />
-    <Route path="/page-3" component={Page3} />
-    <Route component={Page1} />
+    <Redirect path="/" exact to="/workspace" />
+    <Redirect path="/deployments" exact to="/deployments/apps" />
+    <Route path="/workspace" component={Workspace} />
+    <Route path="/environments" component={Environments} />
+    <Route path="/deployments/apps" component={Apps} />
+    <Route path="/deployments/apis" component={Apis} />
+    <Route component={Workspace} />
   </Switch>
 );
 

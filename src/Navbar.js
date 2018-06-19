@@ -9,11 +9,11 @@ import {
 const ProperNavbar = () => (
   <Navbar>
     <NavbarContent>
-      <NavbarItem icon={ICONS.workspace} label="Workspace" path="/page-1" />
-      <NavbarItem icon={ICONS.environment} label="Environments" path="/page-2" />
-      <NavbarItem icon={ICONS.deployment} label="Deployments" path="/page-3" >
-        <NavbarItem icon={ICONS.apps} label="Apps" path="/page-3" />
-        <NavbarItem icon={ICONS.api} label="APIs" path="/page-4" />
+      <NavbarItem icon={ICONS.workspace} label="Workspace" path="/workspace" />
+      <NavbarItem icon={ICONS.environment} label="Environments" path="/environments" />
+      <NavbarItem icon={ICONS.deployment} label="Deployments" path="/deployments" >
+        <NavbarItem icon={ICONS.apps} label="Apps" path="/deployments/apps" />
+        <NavbarItem icon={ICONS.api} label="APIs" path="/deployments/apis" />
       </NavbarItem>
     </NavbarContent>
   </Navbar>
