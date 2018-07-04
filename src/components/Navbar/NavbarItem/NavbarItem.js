@@ -7,6 +7,8 @@ import * as Styles from './NavbarItem.styles';
 
 type Props = {
   icon: any,
+  iconSize?: number,
+  iconColor?: string,
   label: string,
   path: string,
   children: any,
@@ -17,8 +19,12 @@ type Props = {
   },
 };
 
+export const getIconSize = nested => nested ? 14 : 16;
+
 const NavbarItem = ({
   icon,
+  iconSize,
+  iconColor,
   label,
   path,
   expanded,
@@ -28,10 +34,10 @@ const NavbarItem = ({
     pathname,
   },
 }: Props) => (
-  <Styles.Container pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
+  <Styles.Container pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} iconSize={iconSize || getIconSize(nested)} >
     <Styles.NavbarItem to={path} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
-      <Styles.Collapsed nested={nested} expanded={expanded} >
-        <Icon icon={icon} size={Styles.iconSize(nested)} color={pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
+      <Styles.Collapsed nested={nested} expanded={expanded} iconSize={iconSize || getIconSize(nested)} >
+        <Icon icon={icon} size={iconSize || getIconSize(nested)} color={iconColor || pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
       </Styles.Collapsed>
       <Styles.Expanded expanded={expanded} nested={nested} >
         <span>{label}</span>

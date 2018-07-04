@@ -7,13 +7,12 @@ import {
   marginAnimation,
 } from '../constants.styles';
 
-export const iconSize = nested => nested ? 14 : 16;
 const navbarItemMargin = 10;
-const navbarItemRadius = (nested, expanded) => ((collapsedWidth - (navbarItemMargin * 2) - iconSize(nested)) /   2) + ((nested && expanded) ? 20 : 0);
+const navbarItemRadius = (nested, expanded, iconSize) => ((collapsedWidth - (navbarItemMargin * 2) - iconSize) /   2) + ((nested && expanded) ? 20 : 0);
 
 export const Container = styled.div`
-  margin: ${({ nested }) => nested ? 0 : `${navbarItemMargin}px`};
-  padding: ${({ nested }) => ((40 - iconSize(nested)) / 2) - (nested ? 5 : 0)}px 0;
+  margin: 0 ${({ nested }) => nested ? 0 : `${navbarItemMargin}px`};
+  padding: ${({ nested, iconSize }) => ((40 - iconSize) / 2) - (nested ? 5 : 0)}px 0;
   border-radius: 3px;
   ${({ hasNestedItem }) => hasNestedItem ? 'padding-bottom: 0;' : ''}
 
@@ -35,7 +34,7 @@ export const NavbarItem = styled(NavLink)`
 `;
 
 export const Collapsed = styled.div`
-  margin-left: ${({ nested, expanded }) => navbarItemRadius(nested, expanded)}px;
+  margin-left: ${({ nested, expanded, iconSize }) => navbarItemRadius(nested, expanded, iconSize)}px;
   ${marginAnimation}
 `;
 
