@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICONS } from '@asidatascience/adler-ui';
+import { PALETTE, ICONS } from '@asidatascience/adler-ui';
 import {
   Navbar,
   NavbarItem,
@@ -9,8 +9,8 @@ import {
 
 const ProperNavbar = () => (
   <Navbar>
-    <NavbarItem icon={ICONS.sherlock} label="SherlockML" path="/home" />
-    <NavbarItem icon={ICONS.search} label="Search" path="/search" />
+    <NavbarItem icon={ICONS.sherlock} iconSize={30} iconColor={PALETTE.blue} label="SherlockML" path="/home" />
+    <NavbarItem icon={ICONS.search} iconSize={20} label="Search" path="/search" />
     <NavbarContent>
       <NavbarItem icon={ICONS.workspace} label="Workspace" path="/workspace" />
       <NavbarItem icon={ICONS.environment} label="Environments" path="/environments" />
@@ -25,8 +25,8 @@ const ProperNavbar = () => (
     </NavbarContent>
     <NavbarItem icon={ICONS.info} label="Support" path="/support" />
     <NavbarFooter>
-      <NavbarItem icon={ICONS.zendesk} label="Support" path="/support" />
-      <NavbarItem icon={ICONS.settings} label="Account" path="/account" />
+      <NavbarItem icon={ICONS.zendesk} iconSize={30} label="Support" path="/support" />
+      <NavbarItem icon={ICONS.settings} iconSize={30} label="Account" path="/account" />
     </NavbarFooter>
   </Navbar>
 );
