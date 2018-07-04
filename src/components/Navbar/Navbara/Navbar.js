@@ -20,12 +20,20 @@ class Navbar extends React.Component<Props, State> {
   state: State = {
     expanded: false,
   };
+  openNavbarTimeout: IntervalID;
 
   handleMouseEnter = () => {
-    this.setState({ expanded: true });
+    this.openNavbarTimeout = setTimeout(() => { this.setState({ expanded: true }) }, 200);
   }
 
   handleMouseLeave = () => {
+    if (this.openNavbarTimeout) {
+      clearTimeout(this.openNavbarTimeout);
+    }
+    this.setState({ expanded: false });
+  }
+
+  closeNavbar = () => {
     this.setState({ expanded: false });
   }
 
@@ -42,7 +50,7 @@ class Navbar extends React.Component<Props, State> {
         {React.Children.map(children, child => {
           return React.cloneElement(
             child,
-            { expanded },
+            { expanded, closeNavbar: this.closeNavbar },
           );
         })}
       </Styles.Navbar>,
