@@ -22,6 +22,5 @@ export const Navbar = styled.div`
   height: ${height}vh;
   width: ${({ expanded }) => width(expanded)}px;
   background-color: ${PALETTE.black2};
-  padding-top: 250px;
   ${widthAnimation}
 `;
