@@ -5,15 +5,16 @@ import * as Styles from './NavbarGroups.styles';
 
 type Props = {
   expanded: boolean,
+  closeNavbar: Function,
   children: any,
 };
 
-const NavbarFooter = ({ expanded, children }: Props) => (
+const NavbarFooter = ({ expanded, closeNavbar, children }: Props) => (
   <Styles.NavbarFooter>
     {React.Children.map(children, child => {
       return React.cloneElement(
         child,
-        { expanded },
+        { expanded, closeNavbar },
       );
     })}
   </Styles.NavbarFooter>

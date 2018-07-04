@@ -14,6 +14,7 @@ type Props = {
   children: any,
   expanded: boolean,
   nested: boolean,
+  closeNavbar: Function,
   location: {
     pathname: string,
   },
@@ -29,12 +30,13 @@ const NavbarItem = ({
   path,
   expanded,
   nested,
+  closeNavbar,
   children,
   location: {
     pathname,
   },
 }: Props) => (
-  <Styles.Container pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} iconSize={iconSize || getIconSize(nested)} >
+  <Styles.Container onClick={closeNavbar} pathname={pathname} path={path} nested={nested} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} iconSize={iconSize || getIconSize(nested)} >
     <Styles.NavbarItem to={path} hasNestedItem={React.Children.count(children) > 0 && pathname.startsWith(path)} >
       <Styles.Collapsed nested={nested} expanded={expanded} iconSize={iconSize || getIconSize(nested)} >
         <Icon icon={icon} size={iconSize || getIconSize(nested)} color={iconColor || pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5} />
