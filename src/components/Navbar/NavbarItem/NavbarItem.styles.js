@@ -8,29 +8,28 @@ import {
 } from '../constants.styles';
 
 const navbarItemMargin = 10;
-const navbarItemRadius = (nested, expanded, iconSize) => ((collapsedWidth - (navbarItemMargin * 2) - iconSize) /   2) + ((nested && expanded) ? 20 : 0);
-
-export const Container = styled.div`
-  margin: 0 ${({ nested }) => nested ? 0 : `${navbarItemMargin}px`};
-  padding: ${({ nested, iconSize }) => ((40 - iconSize) / 2) - (nested ? 5 : 0)}px 0;
-  border-radius: 3px;
-  ${({ hasNestedItem }) => hasNestedItem ? 'padding-bottom: 0;' : ''}
-
-  ${({ pathname, path }) => pathname.startsWith(path) ? `
-    background-color: rgba(255, 255, 255, 0.03);
-  ` : ''}
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.03);
-  }
-`;
+const navbarItemRadius = (nested, expanded, iconSize) =>
+  ((collapsedWidth - (navbarItemMargin * 2) - iconSize) /   2)
+  + ((nested && expanded) ? 20 : 0);
 
 export const NavbarItem = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
   cursor: pointer;
-  margin-bottom: ${({ hasNestedItem }) => hasNestedItem ? 5 : 0}px;
+  padding: ${({ nested, iconSize }) => ((40 - iconSize) / 2) - (nested ? 5 : 0)}px 0;
+
+  margin: 0 ${({ groupHeader, nested }) => groupHeader || nested ? 0 : `${navbarItemMargin}px`};
+  border-radius: ${({ groupHeader, nested }) => groupHeader || nested ? '0' : '3px'};
+  ${({ groupHeader, pathname, path }) => !groupHeader && pathname.startsWith(path) ? `
+    background-color: rgba(255, 255, 255, 0.03);
+  ` : ''}
+
+  ${({ groupHeader }) => groupHeader ? '' : `
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+  `}
 `;
 
 export const Collapsed = styled.div`
@@ -39,6 +38,8 @@ export const Collapsed = styled.div`
 `;
 
 export const Expanded = styled.div`
+  display: flex;
+  align-items: center;
   overflow: hidden;
   white-space: nowrap;
   margin-left: 5px;

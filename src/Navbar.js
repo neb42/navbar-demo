@@ -5,6 +5,7 @@ import {
   NavbarItem,
   NavbarContent,
   NavbarFooter,
+  NavbarGroup,
 } from './components/Navbar';
 
 const ProperNavbar = () => (
@@ -16,10 +17,10 @@ const ProperNavbar = () => (
       <NavbarItem icon={ICONS.environment} label="Environments" path="/environments" />
       <NavbarItem icon={ICONS.datasets} label="Datasets" path="/datasets" />
       <NavbarItem icon={ICONS.report} label="Reports" path="/reports" />
-      <NavbarItem icon={ICONS.deployment} label="Deployments" path="/deployments" >
+      <NavbarGroup icon={ICONS.deployment} label="Deployments" >
         <NavbarItem icon={ICONS.apps} label="Apps" path="/deployments/apps" />
         <NavbarItem icon={ICONS.api} label="APIs" path="/deployments/apis" />
-      </NavbarItem>
+      </NavbarGroup>
       <NavbarItem icon={ICONS.team} label="Collaborators" path="/team" />
       <NavbarItem icon={ICONS.settings} label="Settings" path="/settings" />
     </NavbarContent>
