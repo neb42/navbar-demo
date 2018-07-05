@@ -23,13 +23,10 @@ class Navbar extends React.Component<Props, State> {
   openNavbarTimeout: IntervalID;
 
   handleMouseEnter = () => {
-    this.openNavbarTimeout = setTimeout(() => { this.setState({ expanded: true }) }, 200);
+    this.setState({ expanded: true });
   }
 
   handleMouseLeave = () => {
-    if (this.openNavbarTimeout) {
-      clearTimeout(this.openNavbarTimeout);
-    }
     this.setState({ expanded: false });
   }
 
