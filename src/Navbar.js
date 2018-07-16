@@ -11,7 +11,7 @@ import {
 const ProperNavbar = () => (
   <Navbar>
     <NavbarItem icon={ICONS.sherlock} iconSize={30} iconColor={PALETTE.blue} label="SherlockML" path="/home" />
-    <NavbarItem icon={ICONS.search} iconSize={20} label="Search" path="/search" />
+    <NavbarItem icon={ICONS.search} iconSize={20} label="Search" onClick={() => console.log('Open search panel')} />
     <NavbarContent>
       <NavbarItem icon={ICONS.workspace} label="Workspace" path="/workspace" />
       <NavbarItem icon={ICONS.environment} label="Environments" path="/environments" />
@@ -27,7 +27,7 @@ const ProperNavbar = () => (
     <NavbarItem icon={ICONS.info} label="Support" path="/support" />
     <NavbarFooter>
       <NavbarItem icon={ICONS.zendesk} iconSize={30} label="Support" path="/support" />
-      <NavbarItem icon={ICONS.settings} iconSize={30} label="Account" path="/account" />
+      <NavbarItem collapsedComponent={<div>foo</div>} iconSize={30} label="Account" path="/account" />
     </NavbarFooter>
   </Navbar>
 );
