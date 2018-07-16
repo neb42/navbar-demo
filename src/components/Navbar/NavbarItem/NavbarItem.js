@@ -51,6 +51,11 @@ const NavbarItem = ({
     onClick && onClick(event);
     closeNavbar && closeNavbar();
   };
+  const handleGroupHeaderToggle = (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleNestedItems && toggleNestedItems();
+  };
   const Collapsed = () => collapsedComponent
     ? collapsedComponent
     : icon
@@ -82,7 +87,7 @@ const NavbarItem = ({
       <Styles.Expanded expanded={expanded} nested={nested} >
         <span>{label}</span>
         {groupHeader && (
-          <span onClick={toggleNestedItems} >
+          <span onClick={handleGroupHeaderToggle} >
             <Icon
               icon={ICONS.caret}
               color={PALETTE.grey5}
