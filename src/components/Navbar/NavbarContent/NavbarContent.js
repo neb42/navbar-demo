@@ -14,7 +14,7 @@ const NavbarContent = ({ expanded, closeNavbar, children }: Props) => (
     {React.Children.map(children, child => {
       return React.cloneElement(
         child,
-        { expanded, closeNavbar },
+        { hightlightOnHover: true, expanded, closeNavbar },
       );
     })}
   </Styles.NavbarContent>

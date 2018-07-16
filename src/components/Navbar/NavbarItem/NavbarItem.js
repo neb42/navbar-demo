@@ -15,8 +15,11 @@ type Props = {
   nested: boolean,
   groupHeader: boolean,
   showNestedItems: boolean,
+  hightlightOnHover: boolean,
   toggleNestedItems: Function,
+  onClick: Function,
   closeNavbar: Function,
+  collapsedComponent: any,
   location: {
     pathname: string,
   },
@@ -34,50 +37,67 @@ const NavbarItem = ({
   nested,
   groupHeader,
   showNestedItems,
+  hightlightOnHover,
   toggleNestedItems,
-  closeNavbar = () => {},
+  onClick,
+  closeNavbar,
+  collapsedComponent,
   location: {
     pathname,
   },
-}: Props) => (
-  <Styles.NavbarItem
-    to={path}
-    onClick={closeNavbar}
-    pathname={pathname}
-    path={path}
-    nested={nested}
-    groupHeader={groupHeader}
-    iconSize={iconSize || getIconSize(nested)}
-  >
-    <Styles.Collapsed
-      nested={nested}
-      expanded={expanded}
-      iconSize={iconSize || getIconSize(nested)}
-    >
+}: Props) => {
+  const Container = path ? Styles.NavbarItemLink : Styles.NavbarItemDiv;
+  const handleOnClick = (event: MouseEvent) => {
+    onClick && onClick(event);
+    closeNavbar && closeNavbar();
+  };
+  const Collapsed = () => collapsedComponent
+    ? collapsedComponent
+    : icon
+    ? (
       <Icon
         icon={icon}
         size={iconSize || getIconSize(nested)}
         color={iconColor || pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5}
       />
-    </Styles.Collapsed>
-    <Styles.Expanded expanded={expanded} nested={nested} >
-      <span>{label}</span>
-      {groupHeader && (
-        <span onClick={toggleNestedItems} >
-          <Icon
-            icon={ICONS.caret}
-            color={PALETTE.grey5}
-            size={10}
-            mixins={[
-              'cursor: pointer;',
-              'margin-left: 5px;',
-              showNestedItems ? 'transform: rotate(90deg);' : '',
-            ]}
-          />
-        </span>
-      )}
-    </Styles.Expanded>
-  </Styles.NavbarItem>
-);
+    ) : null;
+  return (
+    <Container
+      to={path}
+      onClick={handleOnClick}
+      pathname={pathname}
+      path={path}
+      nested={nested}
+      groupHeader={groupHeader}
+      hightlightOnHover={hightlightOnHover}
+      iconSize={iconSize || getIconSize(nested)}
+    >
+      <Styles.Collapsed
+        nested={nested}
+        expanded={expanded}
+        iconSize={iconSize || getIconSize(nested)}
+      >
+        <Collapsed />
+      </Styles.Collapsed>
+      <Styles.Expanded expanded={expanded} nested={nested} >
+        <span>{label}</span>
+        {groupHeader && (
+          <span onClick={toggleNestedItems} >
+            <Icon
+              icon={ICONS.caret}
+              color={PALETTE.grey5}
+              size={10}
+              mixins={[
+                'cursor: pointer;',
+                'margin-left: 5px;',
+                showNestedItems ? 'transform: rotate(90deg);' : '',
+              ]}
+            />
+          </span>
+        )}
+      </Styles.Expanded>
+    </Container>
+  );
+};
 NavbarItem.displayName = 'NavbarItem';
 export default withRouter(NavbarItem);

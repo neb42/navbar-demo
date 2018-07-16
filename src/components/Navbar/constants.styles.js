@@ -5,7 +5,7 @@ export const expandedWidth = 160;
 export const width = expanded => expanded ? expandedWidth : collapsedWidth;
 export const height = 100;
 
-const animationSpeed = '0.25s';
+const animationSpeed = '0.20s';
 export const widthAnimation = css`
   -webkit-transition: width ${animationSpeed} ease-in-out;
   -moz-transition: width ${animationSpeed} ease-in-out;

@@ -14,6 +14,7 @@ type Props = {
   pathname: string,
   label: string,
   expanded: boolean,
+  hightlightOnHover: boolean,
   closeNavbar: Function,
   children: any,
   location: {
@@ -64,6 +65,7 @@ class NavbarGroup extends React.Component<Props, State> {
       label,
       expanded,
       closeNavbar,
+      hightlightOnHover,
       children,
       location: {
         pathname,
@@ -88,7 +90,7 @@ class NavbarGroup extends React.Component<Props, State> {
         {showNestedItems && React.Children.map(children, child => {
           return React.cloneElement(
             child,
-            { expanded, closeNavbar, nested: true },
+            { hightlightOnHover, expanded, closeNavbar, nested: true },
           );
         })}
       </Styles.NavbarGroup>

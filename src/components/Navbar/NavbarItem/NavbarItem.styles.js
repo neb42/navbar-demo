@@ -12,7 +12,7 @@ const navbarItemRadius = (nested, expanded, iconSize) =>
   ((collapsedWidth - (navbarItemMargin * 2) - iconSize) /   2)
   + ((nested && expanded) ? 20 : 0);
 
-export const NavbarItem = styled(NavLink)`
+const NavbarItemBase = css`
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -21,15 +21,23 @@ export const NavbarItem = styled(NavLink)`
 
   margin: 0 ${({ groupHeader, nested }) => groupHeader || nested ? 0 : `${navbarItemMargin}px`};
   border-radius: ${({ groupHeader, nested }) => groupHeader || nested ? '0' : '3px'};
-  ${({ groupHeader, pathname, path }) => !groupHeader && pathname.startsWith(path) ? `
+  ${({ hightlightOnHover, groupHeader, pathname, path }) => hightlightOnHover && !groupHeader && pathname.startsWith(path) ? `
     background-color: rgba(255, 255, 255, 0.03);
   ` : ''}
 
-  ${({ groupHeader }) => groupHeader ? '' : `
+  ${({ hightlightOnHover, groupHeader }) => (!hightlightOnHover || groupHeader) ? '' : `
     &:hover {
       background-color: rgba(255, 255, 255, 0.03);
     }
   `}
+`;
+
+export const NavbarItemDiv = styled.div`
+  ${NavbarItemBase}
+`;
+
+export const NavbarItemLink = styled(NavLink)`
+  ${NavbarItemBase}
 `;
 
 export const Collapsed = styled.div`
