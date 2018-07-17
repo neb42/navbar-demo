@@ -20,6 +20,7 @@ type Props = {
   onClick: Function,
   closeNavbar: Function,
   collapsedComponent: any,
+  expandedComponent: any,
   location: {
     pathname: string,
   },
@@ -42,6 +43,7 @@ const NavbarItem = ({
   onClick,
   closeNavbar,
   collapsedComponent,
+  expandedComponent,
   location: {
     pathname,
   },
@@ -66,6 +68,11 @@ const NavbarItem = ({
         color={iconColor || pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5}
       />
     ) : null;
+  const Expanded = () => expandedComponent
+    ? expandedComponent
+    : label
+    ? <span>{label}</span>
+    : null;
   return (
     <Container
       to={path}
@@ -85,7 +92,7 @@ const NavbarItem = ({
         <Collapsed />
       </Styles.Collapsed>
       <Styles.Expanded expanded={expanded} nested={nested} >
-        <span>{label}</span>
+        <Expanded />
         {groupHeader && (
           <span onClick={handleGroupHeaderToggle} >
             <Icon
