@@ -10,7 +10,7 @@ import {
 } from '../constants.styles';
 
 export const NavbarPlaceHolder = styled.div`
-  height: ${height}vh;
+  height: ${height}%;
   width: ${collapsedWidth}px;
   visibility: hidden;
 `;
@@ -19,7 +19,7 @@ export const Navbar = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: ${height}vh;
+  height: ${height}%;
   width: ${({ expanded }) => width(expanded)}px;
   background-color: ${PALETTE.black2};
   padding-top: 15px;
