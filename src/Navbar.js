@@ -8,9 +8,16 @@ import {
   NavbarGroup,
 } from './components/Navbar';
 
+const CustomExpanded = () => (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <span>SherlockML</span>
+    <span>Project/name</span>
+  </div>
+);
+
 const ProperNavbar = () => (
   <Navbar>
-    <NavbarItem icon={ICONS.sherlock} iconSize={30} iconColor={PALETTE.blue} label="SherlockML" path="/home" />
+    <NavbarItem icon={ICONS.sherlock} iconSize={30} iconColor={PALETTE.blue} expandedComponent={<CustomExpanded />} path="/home" />
     <NavbarItem icon={ICONS.search} iconSize={20} label="Search" onClick={() => console.log('Open search panel')} />
     <NavbarContent>
       <NavbarItem icon={ICONS.workspace} label="Workspace" path="/workspace" />
