@@ -55,6 +55,6 @@ export const Expanded = styled.div`
   color: ${PALETTE.white};
   width: ${({ expanded }) => expanded ? 'auto' : '0%'};
   font-size: ${({ nested }) => nested ? 10 : 12}px;
-  font-weight: ${TYPOGRAPHY.fontWeights.semiBold};
+  font-weight: ${TYPOGRAPHY.fontWeights.regular};
   ${widthAnimation}
 `;
