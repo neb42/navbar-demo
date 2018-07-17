@@ -40,7 +40,18 @@ class NavbarGroup extends React.Component<Props, State> {
   }
 
   get path() {
-    return React.Children.toArray(this.props.children)[0].props.path;
+    const { children } = this.props;
+    const urlArray = React.Children.map(children, child => child.props.path);
+    const A = urlArray.concat().sort();
+    const a1 = A[0];
+    const a2 = A[A.length-1];
+    const L = a1.length;
+    let i = 0;
+    while (i < L && a1.charAt(i) === a2.charAt(i)){
+      i++;
+    }
+    const commonUrl = a1.substring(0, i);
+    return commonUrl.split('/').slice(0, -1).join('/');
   }
 
   handleOnClick = () => {
@@ -81,7 +92,7 @@ class NavbarGroup extends React.Component<Props, State> {
           iconSize={iconSize}
           iconColor={iconColor}
           label={label}
-          path={React.Children.toArray(children)[0].props.path}
+          path={this.path}
           expanded={expanded}
           closeNavbar={this.handleOnClick}
           showNestedItems={showNestedItems}
