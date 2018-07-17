@@ -10,7 +10,7 @@ import {
 const navbarItemMargin = 10;
 const navbarItemRadius = (nested, expanded, iconSize) =>
   ((collapsedWidth - (navbarItemMargin * 2) - iconSize) /   2)
-  + ((nested && expanded) ? 20 : 0);
+  + ((nested && expanded) ? 25 : 0);
 
 const NavbarItemBase = css`
   display: flex;
@@ -42,6 +42,7 @@ export const NavbarItemLink = styled(NavLink)`
 
 export const Collapsed = styled.div`
   margin-left: ${({ nested, expanded, iconSize }) => navbarItemRadius(nested, expanded, iconSize)}px;
+  width: ${({ nested, expanded, iconSize }) => (nested ? 20 : 40) - navbarItemRadius(nested, expanded, iconSize)}px;
   ${marginAnimation}
 `;
 
