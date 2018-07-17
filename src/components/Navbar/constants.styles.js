@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const collapsedWidth = 70;
-export const expandedWidth = 160;
+export const expandedWidth = 170;
 export const width = expanded => expanded ? expandedWidth : collapsedWidth;
 export const height = 100;
 
