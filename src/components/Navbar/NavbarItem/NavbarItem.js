@@ -96,13 +96,14 @@ const NavbarItem = ({
         {groupHeader && (
           <span onClick={handleGroupHeaderToggle} >
             <Icon
-              icon={ICONS.caret}
-              color={PALETTE.grey5}
-              size={10}
+              icon={ICONS['left-chevron']}
+              color={iconColor || pathname.startsWith(path) ? PALETTE.blue : PALETTE.grey5}
+              size={8}
               mixins={[
                 'cursor: pointer;',
-                'margin-left: 5px;',
-                showNestedItems ? 'transform: rotate(90deg);' : '',
+                'margin-left: 10px;',
+                showNestedItems ? 'transform: rotate(-90deg);' : '',
+                'transition: transform 0.2s ease-out;',
               ]}
             />
           </span>
